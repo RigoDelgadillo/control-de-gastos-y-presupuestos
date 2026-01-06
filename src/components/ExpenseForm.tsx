@@ -15,7 +15,7 @@ export default function ExpenseForm() {
       >
         Nuevo Gasto
       </legend>
-
+ 
       <div className="flex flex-col gap-2" >
         <label
           htmlFor="expenseName"
