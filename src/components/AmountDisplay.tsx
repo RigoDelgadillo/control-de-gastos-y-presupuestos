@@ -1,3 +1,4 @@
+import { formatCurrancy } from "../helpers"
 
 type AmountDisplayProps = {
   label : string,
@@ -6,6 +7,9 @@ type AmountDisplayProps = {
 
 export default function AmountDisplay({label, amount} : AmountDisplayProps) {
   return (
-    <div>AmountDisplay</div>
+    <p className="text-2xl text-blue-600 font-bold">
+      {label}: {''}
+      <span>{formatCurrancy(amount)}</span>
+    </p>
   )
 }
