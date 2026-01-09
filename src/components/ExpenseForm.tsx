@@ -1,5 +1,4 @@
 import { categories } from "../data/categories";
-
 import type { DraftExpense, Value } from "../types";
 import DatePicker from 'react-date-picker';
 import 'react-calendar/dist/Calendar.css'
@@ -16,7 +15,6 @@ export default function ExpenseForm() {
     category: '',
     date: new Date()
   })
-
 
   const [error, setError] = useState('')
   const { dispatch } = useBudget()
@@ -46,6 +44,13 @@ export default function ExpenseForm() {
     }
 
     dispatch({type: 'add-expense', payload: { expense }})
+
+    setExpense({
+      amount : 0,
+      expenseName: '',
+      category: '',
+      date: new Date()
+    })
     
   }
 
