@@ -17,7 +17,8 @@ export default function ExpenseForm() {
   })
 
   const [error, setError] = useState('')
-  const { dispatch, state } = useBudget()
+  const { dispatch, state, remainingBudget } = useBudget()
+  const [previousAmount, setPreviousAmount] = useState(0)
 
   useEffect(() => {
       if(state.editingId){
@@ -51,6 +52,11 @@ export default function ExpenseForm() {
       return
     }
 
+    if((previousAmount - expense.amount) > remainingBudget) {
+      setError('Has alcanzado el limite de presupuesto')
+      return
+    } 
+
     if(state.editingId){
       dispatch({type: 'update-expense', payload: {expense: { id: state.editingId, ...expense}}})
     } else {
@@ -63,7 +69,7 @@ export default function ExpenseForm() {
       category: '',
       date: new Date()
     })
-    
+    setPreviousAmount(0)
   }
 
   return (
