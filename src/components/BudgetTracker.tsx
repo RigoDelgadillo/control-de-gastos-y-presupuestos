@@ -7,7 +7,7 @@ import "react-circular-progressbar/dist/styles.css"
 
 export default function BudgetTracker() {
 
-  const {state} = useBudget()
+  const {state, dispatch} = useBudget()
 
   const totalExpenses = useMemo(() => state.expenses.reduce((total,expense) => expense.amount + total, 0), [state])
 
@@ -35,6 +35,7 @@ export default function BudgetTracker() {
         <button 
           type="button"
           className='bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-lg'
+          onClick={() => dispatch({type: 'reset-app'})}
         >
           Reiniciar App
         </button>
