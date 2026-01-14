@@ -17,7 +17,8 @@ export default function ExpenseForm() {
   })
 
   const [error, setError] = useState('')
-  const { dispatch, state } = useBudget()
+  const { dispatch, state, remainingBudget } = useBudget()
+  const [previousAmount, setPreviousAmount] = useState(0)
 
   useEffect(() => {
       if(state.editingId){
@@ -51,6 +52,11 @@ export default function ExpenseForm() {
       return
     }
 
+    if((previousAmount - expense.amount) > remainingBudget) {
+      setError('Has alcanzado el limite de presupuesto')
+      return
+    } 
+
     if(state.editingId){
       dispatch({type: 'update-expense', payload: {expense: { id: state.editingId, ...expense}}})
     } else {
@@ -63,7 +69,7 @@ export default function ExpenseForm() {
       category: '',
       date: new Date()
     })
-    
+    setPreviousAmount(0)
   }
 
   return (
@@ -71,7 +77,7 @@ export default function ExpenseForm() {
       <legend
         className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2"
       >
-        Nuevo Gasto
+        { state.editingId ? 'Guardar Gasto' :  'Nuevo Gasto'}
       </legend>
       
       {error && <ErrorMessage>{error}</ErrorMessage>}
@@ -159,7 +165,7 @@ export default function ExpenseForm() {
       <input 
         type="submit"
         className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-        value="Registrar Gasto"
+        value= { state.editingId ? 'Guardar Gasto' :  'Registrar Gasto'}
       />
 
     </form>
