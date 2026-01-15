@@ -25,6 +25,7 @@ export default function ExpenseForm() {
         const editingExpense = state.expenses.filter( currentExpense => currentExpense.id === state.editingId)[0]
   
         setExpense(editingExpense)
+        setPreviousAmount(editingExpense.amount)
       }
     }, [state.editingId])
 
@@ -52,7 +53,7 @@ export default function ExpenseForm() {
       return
     }
 
-    if((previousAmount - expense.amount) > remainingBudget) {
+    if((expense.amount - previousAmount) > remainingBudget) {
       setError('Has alcanzado el limite de presupuesto')
       return
     } 
