@@ -13,6 +13,7 @@
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.18",
+    "motion": "^12.26.2",
     "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-calendar": "^6.0.0",
