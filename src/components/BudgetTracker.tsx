@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useBudget } from "../hooks/useBudget";
 import AmountDisplay from "./AmountDisplay";
 import "react-circular-progressbar/dist/styles.css"
+import { motion } from "motion/react";
 
 
 export default function BudgetTracker() {
@@ -32,13 +33,18 @@ export default function BudgetTracker() {
       </div>
 
       <div className='flex flex-col justify-center items-center gap-8'>
-        <button 
+        <motion.button
+          whileHover={{
+            scale: 1.03,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
           type="button"
-          className='bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-lg'
+          className='bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-lg cursor-pointer'
           onClick={() => dispatch({type: 'reset-app'})}
         >
           Reiniciar App
-        </button>
+        </motion.button>
 
         <AmountDisplay
           label="Presupuesto"

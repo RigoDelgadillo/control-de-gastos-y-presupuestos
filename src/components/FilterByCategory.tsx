@@ -14,7 +14,7 @@ export default function FilterByCategory() {
     <div className="bg-white shadow-lg rounded-lg p-10">
       <form>
         <div className="flex flex-col md:flex-row md:items-center gap-5">
-          <label htmlFor="categories">Filtrar Categorias:</label>
+          <label htmlFor="categories">Filtrar Categoría:</label>
           <select 
             id="category"
             className="bg-slate-100 p-3 flex-1 rounded"

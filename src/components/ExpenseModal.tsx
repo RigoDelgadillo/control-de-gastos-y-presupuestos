@@ -4,6 +4,8 @@ import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/re
 import { useBudget } from '../hooks/useBudget'
 import ExpenseForm from './ExpenseForm'
 
+import { motion } from 'motion/react'
+
 export default function ExpenseModal() {
 
   const { state, dispatch } = useBudget()
@@ -11,12 +13,18 @@ export default function ExpenseModal() {
   return (
     <>
       <div className="fixed right-5 bottom-5 flex items-center justify-center">
-        <button
+        <motion.button
+          whileHover={{
+            scale: 1.1,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+
           type="button"
           onClick={ () => dispatch({type: 'show-modal'}) }
         >
-          <PlusCircleIcon className='w-16 h-16 text-blue-600 rounded-full' />
-        </button>
+          <PlusCircleIcon className='w-24 h-24 text-blue-600 rounded-full cursor-pointer' />
+        </motion.button>
       </div>
 
       <Transition appear show={state.modal} as={Fragment}>
