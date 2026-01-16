@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body{
+  background-color: rgb(247, 248, 255)
+}
+
 /*** SWIPE LIST OVERRIDES **/
 .swipeable-list-item__leading-actions, 
 .swipeable-list-item__trailing-actions {

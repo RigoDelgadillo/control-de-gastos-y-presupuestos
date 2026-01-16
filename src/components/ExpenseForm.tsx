@@ -6,6 +6,7 @@ import 'react-date-picker/dist/DatePicker.css'
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import ErrorMessage from "./ErrorMessage";
 import { useBudget } from "../hooks/useBudget";
+import { motion } from "motion/react";
 
 export default function ExpenseForm() {
 
@@ -25,6 +26,7 @@ export default function ExpenseForm() {
         const editingExpense = state.expenses.filter( currentExpense => currentExpense.id === state.editingId)[0]
   
         setExpense(editingExpense)
+        setPreviousAmount(editingExpense.amount)
       }
     }, [state.editingId])
 
@@ -52,7 +54,7 @@ export default function ExpenseForm() {
       return
     }
 
-    if((previousAmount - expense.amount) > remainingBudget) {
+    if((expense.amount - previousAmount) > remainingBudget) {
       setError('Has alcanzado el limite de presupuesto')
       return
     } 
@@ -162,7 +164,13 @@ export default function ExpenseForm() {
         />
       </div>
 
-      <input 
+      <motion.input
+        whileHover={{
+            scale: 1.03,
+            transition: { duration: 0.1 },
+          }}
+          whileTap={{ scale: 0.9 }}
+
         type="submit"
         className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
         value= { state.editingId ? 'Guardar Gasto' :  'Registrar Gasto'}
